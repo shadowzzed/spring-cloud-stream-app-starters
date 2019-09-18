@@ -1,6 +1,0 @@
-cloud:
-  aws:
-    region:
-      static: us-east-1
-    stack:
-      name: IntegrationTestStack
