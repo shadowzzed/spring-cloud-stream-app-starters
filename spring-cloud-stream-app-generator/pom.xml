@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>spring-cloud-stream-app-starters</artifactId>
+		<groupId>org.springframework.cloud.stream.app</groupId>
+		<version>1.1.0.BUILD-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>spring-cloud-stream-app-generator</artifactId>
+	<packaging>pom</packaging>
+	<name>spring-cloud-stream-app-generator</name>
+
+	<properties>
+		<bomsWithHigherPrecedence />
+		<bootVersion>1.3.5.RELEASE</bootVersion>
+		<io-projectreactor-core.version>3.0.2.RELEASE</io-projectreactor-core.version>
+		<io-projectreactor-ipc.version>0.5.1.RELEASE</io-projectreactor-ipc.version>
+		<io-netty-all.version>4.1.5.Final</io-netty-all.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.cloud.stream.app.plugin</groupId>
+				<artifactId>spring-cloud-stream-app-maven-plugin</artifactId>
+				<version>${scs-app-maven-plugin.version}</version>
+				<configuration>
+					<javaVersion>1.7</javaVersion>
+					<bootVersion>${bootVersion}</bootVersion>
+					<generatedProjectHome>${session.executionRootDirectory}/apps</generatedProjectHome>
+					<generatedProjectVersion>${project.version}</generatedProjectVersion>
+					<applicationType>stream</applicationType>
+					<bomsWithHigherPrecedence>${bomsWithHigherPrecedence}</bomsWithHigherPrecedence>
+					<bom>
+						<name>scs-bom</name>
+						<groupId>org.springframework.cloud.stream.app</groupId>
+						<artifactId>spring-cloud-stream-app-dependencies</artifactId>
+						<version>${project.version}</version>
+					</bom>
+					<binders>
+						<kafka />
+						<rabbit />
+					</binders>
+					<additionalGlobalDependencies>
+						<dependency>
+							<groupId>org.springframework.cloud</groupId>
+							<artifactId>spring-cloud-starter-config</artifactId>
+						</dependency>
+					</additionalGlobalDependencies>
+					<generatedApps>
+						<aggregate-counter-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.aggregate.counter.AggregateCounterSinkTestConfiguration.class</extraTestConfigClass>
+						</aggregate-counter-sink>
+						<bridge-processor />
+						<cassandra-sink>
+							<testsIgnored>true</testsIgnored>
+						</cassandra-sink>
+						<counter-sink />
+						<field-value-counter-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.fieldvaluecounter.FieldValueCounterSinkTestConfiguration.class</extraTestConfigClass>
+						</field-value-counter-sink>
+
+						<file-source />
+						<file-sink />
+						<filter-processor />
+						<ftp-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.ftp.FtpSinkTestConfiguration.class</extraTestConfigClass>
+						</ftp-sink>
+						<ftp-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.ftp.FtpSourceTestConfiguration.class</extraTestConfigClass>
+						</ftp-source>
+						<gemfire-sink>
+							<extraRepositories>
+								<gemstone-release-cache />
+							</extraRepositories>
+							<testsIgnored>true</testsIgnored>
+						</gemfire-sink>
+						<gemfire-source>
+							<extraRepositories>
+								<gemstone-release-cache />
+							</extraRepositories>
+							<testsIgnored>true</testsIgnored>
+						</gemfire-source>
+						<gemfire-cq-source>
+							<extraRepositories>
+								<gemstone-release-cache />
+							</extraRepositories>
+							<testsIgnored>true</testsIgnored>
+						</gemfire-cq-source>
+						<gpfdist-sink>
+							<testsIgnored>true</testsIgnored>
+						</gpfdist-sink>
+						<groovy-filter-processor>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.script.ScriptableTestConfiguration.class</extraTestConfigClass>
+						</groovy-filter-processor>
+						<groovy-transform-processor>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.script.ScriptableTestConfiguration.class</extraTestConfigClass>
+						</groovy-transform-processor>
+						<hdfs-sink />
+						<hdfs-dataset-sink />
+						<httpclient-processor>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.http.HttpClientProcessorTestConfiguration.class</extraTestConfigClass>
+						</httpclient-processor>
+						<http-source />
+						<jdbc-sink />
+						<jdbc-source />
+						<jms-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.jms.JmsSourceTestConfiguration.class</extraTestConfigClass>
+						</jms-source>
+						<loggregator-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.loggregator.LoggregatorSourceTestConfiguration.class</extraTestConfigClass>
+						</loggregator-source>
+						<mail-source />
+						<!--
+							Due to Licensing reasons, the pmml processor executable app is not built (and hence not published)
+							on a regular basis via continuous integration. If you wish to use it, simply uncomment those
+							lines and generate the apps.
+						-->
+						<!--
+						<pmml-processor>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.pmml.PmmlProcessorTestConfiguration.class</extraTestConfigClass>
+						</pmml-processor>
+						-->
+						<log-sink />
+						<mongodb-source />
+						<rabbit-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.rabbit.RabbitSinkTestConfiguration.class</extraTestConfigClass>
+						</rabbit-sink>
+						<rabbit-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.rabbit.RabbitSourceTestConfiguration.class</extraTestConfigClass>
+						</rabbit-source>
+						<redis-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.redis.RedisSinkTestConfiguration.class</extraTestConfigClass>
+						</redis-sink>
+						<router-sink />
+						<s3-sink>
+							<autoConfigClass>org.springframework.cloud.stream.app.s3.sink.AmazonS3SinkConfiguration.class</autoConfigClass>
+							<!--<testsIgnored>true</testsIgnored>-->
+						</s3-sink>
+						<s3-source>
+							<autoConfigClass>org.springframework.cloud.stream.app.s3.source.AmazonS3SourceConfiguration.class</autoConfigClass>
+							<testsIgnored>true</testsIgnored>
+						</s3-source>
+						<scriptable-transform-processor>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.script.ScriptableTestConfiguration.class</extraTestConfigClass>
+						</scriptable-transform-processor>
+						<sftp-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.sftp.SftpSinkTestConfiguration.class</extraTestConfigClass>
+						</sftp-sink>
+						<sftp-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.sftp.SftpSourceTestConfiguration.class</extraTestConfigClass>
+						</sftp-source>
+						<splitter-processor />
+						<syslog-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.ip.IpSourceTestConfiguration.class</extraTestConfigClass>
+						</syslog-source>
+						<task-launcher-local-sink />
+						<task-launcher-yarn-sink />
+						<tasklaunchrequest-transform-processor />
+						<task-launcher-cloudfoundry-sink>
+							<forceDependencies>
+								<dependency>
+									<groupId>io.projectreactor</groupId>
+									<artifactId>reactor-core</artifactId>
+									<version>${io-projectreactor-core.version}</version>
+								</dependency>
+								<dependency>
+									<groupId>io.projectreactor.ipc</groupId>
+									<artifactId>reactor-netty</artifactId>
+									<version>${io-projectreactor-ipc.version}</version>
+								</dependency>
+								<dependency>
+									<groupId>io.netty</groupId>
+									<artifactId>netty-all</artifactId>
+									<version>${io-netty-all.version}</version>
+								</dependency>
+							</forceDependencies>
+						</task-launcher-cloudfoundry-sink>
+						<tcp-sink>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.ip.IpSinkTestConfiguration.class</extraTestConfigClass>
+						</tcp-sink>
+						<tcp-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.ip.IpSourceTestConfiguration.class</extraTestConfigClass>
+						</tcp-source>
+						<tcp-client-source />
+						<tcp-client-processor />
+						<time-source />
+						<transform-processor />
+						<trigger-source />
+						<triggertask-source />
+						<twitterstream-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.twitter.TwitterTestConfiguration.class</extraTestConfigClass>
+						</twitterstream-source>
+						<websocket-sink />
+						<!-- Test Modules -->
+						<integration-test-processor>
+						</integration-test-processor>
+						<throughput-sink />
+						<load-generator-source>
+							<extraTestConfigClass>org.springframework.cloud.stream.app.test.loadgenerator.LoadGeneratorSourceTestConfiguration.class</extraTestConfigClass>
+						</load-generator-source>
+					</generatedApps>
+					<extraRepositories>
+						<repository>
+							<id>gemstone-release-cache</id>
+							<url>https://repo.spring.io/gemstone-release-cache/</url>
+							<name>Gemfire Release Repository</name>
+							<snapshotEnabled>false</snapshotEnabled>
+						</repository>
+					</extraRepositories>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
